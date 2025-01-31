@@ -1,0 +1,77 @@
+import { BadRequestException, Injectable } from '@nestjs/common';
+import { CreateSuperheroDto } from './dto/create-superhero.dto';
+import { Superhero } from './entities';
+import { SuperheroType } from './enum';
+import { HumbleSuperheroFactory } from './factories/humble-superhero.factory';
+import { CreateHumbleSuperheroDto } from './dto';
+import { SuperheroFactoryInterface } from './factories/superhero.factory.interface';
+
+@Injectable()
+export class SuperheroesService {
+  private superheroes: Superhero[] = [];
+
+  private readonly superheroFactories: Record<
+    SuperheroType,
+    SuperheroFactoryInterface<Superhero>
+  > = {
+    [SuperheroType.HUMBLE]: new HumbleSuperheroFactory(),
+    // Add more superhero factories here
+  };
+
+  createSuperhero(
+    createSuperheroDto: CreateSuperheroDto | CreateHumbleSuperheroDto,
+  ) {
+    const factory = this.getFactory(createSuperheroDto.type);
+
+    const superhero = this.createAndValidateSuperhero(
+      createSuperheroDto,
+      factory,
+    );
+
+    this.saveSuperhero(superhero);
+    return superhero;
+  }
+
+  findAll() {
+    throw new Error('Method not implemented.');
+  }
+
+  private getFactory(type: SuperheroType) {
+    const factory = this.superheroFactories[type];
+    if (!factory)
+      throw new BadRequestException(`Invalid superhero type: ${type}`);
+    return factory;
+  }
+
+  private createAndValidateSuperhero(dto: CreateSuperheroDto, factory: any) {
+    switch (dto.type) {
+      case SuperheroType.HUMBLE:
+        this.isHumbleSuperheroDto(dto);
+        return factory.createSuperhero({
+          id: this.generateId(),
+          ...dto,
+        });
+
+      // Add more superhero types here
+      default:
+        throw new BadRequestException(`Invalid superhero type: ${dto.type}`);
+    }
+  }
+
+  private isHumbleSuperheroDto(
+    dto: CreateSuperheroDto,
+  ): asserts dto is CreateHumbleSuperheroDto {
+    if (!('humilityScore' in dto))
+      throw new BadRequestException(
+        'Missing required fields for Humble superhero',
+      );
+  }
+
+  private generateId(): number {
+    return this.superheroes.length + 1;
+  }
+
+  private saveSuperhero(superhero: Superhero): void {
+    this.superheroes.push(superhero);
+  }
+}
