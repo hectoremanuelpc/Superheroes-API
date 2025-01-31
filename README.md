@@ -23,7 +23,7 @@ A simple API for managing superheroes. Users can create superheroes by specifyin
 1. Clone the repository:
     ```sh
     git clone https://github.com/hectoremanuelpc/Superheroes-API.git
-    cd superheroes-api/superheroes-api
+    cd superheroes-api/api
     ```
 2. Install dependencies:
     ```sh

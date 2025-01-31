@@ -77,7 +77,8 @@ export const SuperheroForm = () => {
                 <button
                     type="submit"
                     disabled={creating}
-                    style={{ cursor: creating ? "not-allowed" : "pointer", borderRadius: "5px", marginTop: "1rem" }}
+                    className="submit-btn"
+                    style={{ cursor: creating ? "not-allowed" : "pointer" }}
                 >
                     Add Superhero
                 </button>

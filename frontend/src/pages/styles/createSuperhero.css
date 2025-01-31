@@ -20,3 +20,15 @@
 .arrow-back:hover {
     transform: translateX(-5px);
 }
+
+button.submit-btn {
+    background-color: #333;
+    border-radius: 5px;
+    padding: 0.3rem 0.5rem;
+    margin-top: 1rem;
+}
+
+button.submit-btn:hover {
+    background-color: #666;
+    transition: all 0.3s ease-in-out;
+}
