@@ -1,9 +1,8 @@
 import { BadRequestException, Injectable } from '@nestjs/common';
 import { CreateSuperheroDto } from './dto/create-superhero.dto';
-import { Superhero } from './entities';
+import { HumbleSuperhero, Superhero } from './entities';
 import { SuperheroType } from './enum';
 import { HumbleSuperheroFactory } from './factories/humble-superhero.factory';
-import { CreateHumbleSuperheroDto } from './dto';
 import { SuperheroFactoryInterface } from './factories/superhero.factory.interface';
 
 @Injectable()
@@ -18,9 +17,7 @@ export class SuperheroesService {
     // Add more superhero factories here
   };
 
-  createSuperhero(
-    createSuperheroDto: CreateSuperheroDto | CreateHumbleSuperheroDto,
-  ) {
+  createSuperhero(createSuperheroDto: CreateSuperheroDto) {
     const factory = this.getFactory(createSuperheroDto.type);
 
     const superhero = this.createAndValidateSuperhero(
@@ -32,8 +29,33 @@ export class SuperheroesService {
     return superhero;
   }
 
-  findAll() {
-    throw new Error('Method not implemented.');
+  findAll(type?: string) {
+    if (!type) {
+      return this.superheroes.length > 0
+        ? this.superheroes
+        : 'No superheroes found.';
+    }
+
+    switch (type) {
+      case SuperheroType.HUMBLE:
+        return this.getHumbleSuperheroes();
+
+      // Add more superhero types here
+
+      default:
+        throw new BadRequestException(`Invalid superhero type: ${type}`);
+    }
+  }
+
+  private getHumbleSuperheroes() {
+    const humbleSuperheroes = this.superheroes
+      .filter((superhero) => superhero.getType() === SuperheroType.HUMBLE)
+      .map((superhero) => superhero as HumbleSuperhero)
+      .sort((a, b) => b.getHumilityScore() - a.getHumilityScore());
+
+    return humbleSuperheroes.length > 0
+      ? humbleSuperheroes
+      : 'No humble superheroes found.';
   }
 
   private getFactory(type: SuperheroType) {
@@ -58,9 +80,7 @@ export class SuperheroesService {
     }
   }
 
-  private isHumbleSuperheroDto(
-    dto: CreateSuperheroDto,
-  ): asserts dto is CreateHumbleSuperheroDto {
+  private isHumbleSuperheroDto(dto: CreateSuperheroDto) {
     if (!('humilityScore' in dto))
       throw new BadRequestException(
         'Missing required fields for Humble superhero',

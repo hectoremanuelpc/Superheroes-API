@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Body } from '@nestjs/common';
+import { Controller, Get, Post, Body, Query } from '@nestjs/common';
 import { SuperheroesService } from './superheroes.service';
 import { CreateSuperheroDto } from './dto';
 
@@ -14,7 +14,7 @@ export class SuperheroesController {
   }
 
   @Get()
-  findAll() {
-    return this.superheroesService.findAll();
+  findAll(@Query('type') type: string) {
+    return this.superheroesService.findAll(type);
   }
 }
