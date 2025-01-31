@@ -1,17 +1,15 @@
 import { Controller, Get, Post, Body } from '@nestjs/common';
 import { SuperheroesService } from './superheroes.service';
-import { CreateHumbleSuperheroDto, CreateSuperheroDto } from './dto';
+import { CreateSuperheroDto } from './dto';
 
 @Controller('superheroes')
 export class SuperheroesController {
   constructor(private readonly superheroesService: SuperheroesService) {}
 
   @Post()
-  async create(
-    @Body() createSuperheroDto: CreateSuperheroDto | CreateHumbleSuperheroDto,
-  ) {
+  create(@Body() createSuperheroDto: CreateSuperheroDto) {
     const superhero =
-      await this.superheroesService.createSuperhero(createSuperheroDto);
+      this.superheroesService.createSuperhero(createSuperheroDto);
     return superhero;
   }
 

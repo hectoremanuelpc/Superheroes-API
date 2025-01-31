@@ -1,4 +1,11 @@
-import { IsEnum, IsNumber, IsString, Max, Min } from 'class-validator';
+import {
+  IsEnum,
+  IsNumber,
+  IsOptional,
+  IsString,
+  Max,
+  Min,
+} from 'class-validator';
 import { SuperheroType, Superpower } from '../enum';
 
 export class CreateSuperheroDto {
@@ -14,4 +21,10 @@ export class CreateSuperheroDto {
     message: `Type must be one of the following values: ${Object.values(SuperheroType).join(', ')}`,
   })
   type: SuperheroType;
+
+  @IsNumber()
+  @Min(1)
+  @Max(10)
+  @IsOptional()
+  humilityScore?: number;
 }
