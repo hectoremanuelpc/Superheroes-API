@@ -1,11 +1,11 @@
-# Humble Superhero API 🚀
+# Superheroes API 🚀
 
-A simple API to manage superheroes based on their humility. Users can add superheroes with a name, superpower, and humility score (1-10) and retrieve a sorted list. Built with NestJS and a React frontend.
+A simple API for managing superheroes. Users can create superheroes by specifying a name, type, superpower, and additional attributes depending on the superhero type. Built with NestJS for the backend and React for the frontend.
 
 ## Features
 
--   Add a new superhero with a name, superpower, and humility score.
--   Retrieve all superheroes sorted by humility score in descending order.
+-   Create different types of superheroes.
+-   Retrieve all superheroes.
 -   Input validation to ensure correct data submission.
 -   Basic testing with Jest.
 -   Frontend built with React.
@@ -22,8 +22,8 @@ A simple API to manage superheroes based on their humility. Users can add superh
 
 1. Clone the repository:
     ```sh
-    git clone https://github.com/hectoremanuelpc/Humbe-Superhero.git
-    cd humble-superhero/backend
+    git clone https://github.com/hectoremanuelpc/Superheroes-API.git
+    cd superheroes-api/superheroes-api
     ```
 2. Install dependencies:
     ```sh
@@ -38,7 +38,7 @@ A simple API to manage superheroes based on their humility. Users can add superh
 
 1. Navigate to the frontend folder:
     ```sh
-    cd ../frontend
+    cd superheroes-api/frontend
     ```
 2. Install dependencies:
     ```sh
@@ -51,12 +51,14 @@ A simple API to manage superheroes based on their humility. Users can add superh
 
 ## API Endpoints
 
--   **POST /superheroes**: Add a new superhero (requires name, superpower, and humility score).
--   **GET /superheroes**: Fetch the list of superheroes sorted by humility score.
+-   **POST /superheroes**: Add a new superhero. Requires `name`, `type`, and `superpower`. Additionally, requires `humilityScore` for humble superheroes.
+-   **GET /superheroes**: Fetch the list of superheroes.
+-   **GET /superheroes?type=humble**: Fetch the list of humble superheroes sorted by humility score.
 
 ## If I had more time
 
 -   Persistent database storage instead of in-memory storage.
+-   More superhero types and customization.
 -   Authentication & authorization for managing superhero data.
 -   More advanced filtering and sorting options.
 

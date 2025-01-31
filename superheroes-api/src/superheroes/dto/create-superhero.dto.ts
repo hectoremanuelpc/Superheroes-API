@@ -1,10 +1,10 @@
 import {
+  IsString,
   IsEnum,
   IsNumber,
-  IsOptional,
-  IsString,
-  Max,
   Min,
+  Max,
+  IsOptional,
 } from 'class-validator';
 import { SuperheroType, Superpower } from '../enum';
 

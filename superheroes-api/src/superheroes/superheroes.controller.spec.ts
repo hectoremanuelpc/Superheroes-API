@@ -1,9 +1,9 @@
-import { Test, TestingModule } from '@nestjs/testing';
 import { SuperheroesController } from './superheroes.controller';
 import { SuperheroesService } from './superheroes.service';
-import { CreateHumbleSuperheroDto } from './dto';
 import { SuperheroType, Superpower } from './enum';
 import { HumbleSuperhero } from './entities';
+import { CreateSuperheroDto } from './dto';
+import { Test, TestingModule } from '@nestjs/testing';
 
 describe('SuperheroesController', () => {
   let controller: SuperheroesController;
@@ -13,7 +13,7 @@ describe('SuperheroesController', () => {
     const mockService = {
       createSuperhero: jest
         .fn()
-        .mockImplementation((dto: CreateHumbleSuperheroDto) => {
+        .mockImplementation((dto: CreateSuperheroDto) => {
           return new HumbleSuperhero(
             1, // Simulamos la asignación del ID
             dto.name,
@@ -41,7 +41,7 @@ describe('SuperheroesController', () => {
   describe('create', () => {
     it('should create a humble superhero successfully', async () => {
       // Arrange
-      const createSuperheroDto: CreateHumbleSuperheroDto = {
+      const createSuperheroDto: CreateSuperheroDto = {
         name: 'Humble Man',
         type: SuperheroType.HUMBLE,
         superpower: Superpower.INVISIBILITY,

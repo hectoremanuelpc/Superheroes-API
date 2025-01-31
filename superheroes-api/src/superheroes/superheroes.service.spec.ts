@@ -2,8 +2,8 @@ import { Test, TestingModule } from '@nestjs/testing';
 import { SuperheroesService } from './superheroes.service';
 import { BadRequestException } from '@nestjs/common';
 import { SuperheroType, Superpower } from './enum';
-import { CreateHumbleSuperheroDto } from './dto';
 import { HumbleSuperhero } from './entities';
+import { CreateSuperheroDto } from './dto';
 
 describe('SuperheroesService', () => {
   let service: SuperheroesService;
@@ -23,7 +23,7 @@ describe('SuperheroesService', () => {
 
   describe('createSuperhero', () => {
     it('should create a humble superhero successfully', () => {
-      const dto: CreateHumbleSuperheroDto = {
+      const dto: CreateSuperheroDto = {
         name: 'Test Hero',
         type: SuperheroType.HUMBLE,
         superpower: Superpower.FLYING,

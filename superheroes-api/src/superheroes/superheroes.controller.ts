@@ -1,6 +1,6 @@
-import { Controller, Get, Post, Body, Query } from '@nestjs/common';
 import { SuperheroesService } from './superheroes.service';
 import { CreateSuperheroDto } from './dto';
+import { Body, Controller, Get, Post, Query } from '@nestjs/common';
 
 @Controller('superheroes')
 export class SuperheroesController {

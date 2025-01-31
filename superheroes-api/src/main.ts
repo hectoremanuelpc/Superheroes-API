@@ -1,6 +1,6 @@
-import { NestFactory } from '@nestjs/core';
-import { AppModule } from './app.module';
 import { Logger, ValidationPipe } from '@nestjs/common';
+import { AppModule } from './app.module';
+import { NestFactory } from '@nestjs/core';
 
 async function bootstrap() {
   const LOGGER = new Logger('SuperheroesAPI');
