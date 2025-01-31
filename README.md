@@ -62,6 +62,15 @@ A simple API for managing superheroes. Users can create superheroes by specifyin
 -   Authentication & authorization for managing superhero data.
 -   More advanced filtering and sorting options.
 
+## Collaboration Notes
+
+To improve or expand this task, collaboration with a teammate can be approached in the following ways:
+
+1. **Code Reviews**: Regularly review each other's code to ensure quality and share knowledge about best practices.
+2. **Pair Programming**: Work together on complex features to enhance understanding and foster creativity.
+3. **Task Division**: Split tasks based on strengths and interests, allowing each team member to focus on what they do best.
+4. **Feedback Sessions**: Schedule regular meetings to discuss ideas, gather feedback, and brainstorm new features or improvements.
+
 ## License
 
 This project is open-source and available under the MIT License.
