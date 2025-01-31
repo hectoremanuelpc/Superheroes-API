@@ -34,7 +34,7 @@ A simple API for managing superheroes. Users can create superheroes by specifyin
     npm run start
     ```
 
-### Frontend (Optional)
+### Frontend
 
 1. Navigate to the frontend folder:
     ```sh
