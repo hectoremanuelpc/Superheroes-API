@@ -1,0 +1,22 @@
+.form-container {
+    background: #fff;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.form-container h2 {
+    margin-bottom: 1rem;
+}
+
+.arrow-back {
+    text-decoration: none;
+    color: #333;
+    display: inline-block;
+    padding: 10px;
+    transition: transform 0.3s ease;
+}
+
+.arrow-back:hover {
+    transform: translateX(-5px);
+}

@@ -31,9 +31,7 @@ export class SuperheroesService {
 
   findAll(type?: string) {
     if (!type) {
-      return this.superheroes.length > 0
-        ? this.superheroes
-        : 'No superheroes found.';
+      return this.superheroes;
     }
 
     switch (type) {
@@ -53,9 +51,7 @@ export class SuperheroesService {
       .map((superhero) => superhero as HumbleSuperhero)
       .sort((a, b) => b.getHumilityScore() - a.getHumilityScore());
 
-    return humbleSuperheroes.length > 0
-      ? humbleSuperheroes
-      : 'No humble superheroes found.';
+    return humbleSuperheroes;
   }
 
   private getFactory(type: SuperheroType) {
